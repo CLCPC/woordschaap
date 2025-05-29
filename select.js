@@ -342,7 +342,7 @@ function clear(complete, highlight) {
 	positionLookup = [];
 	var el = document.getElementsByTagName("canvas")[0];
 	var ctx = el.getContext("2d");
-	ctx.font = "30px sans-serif";
+	ctx.font = "30px 'Charis SIL', serif";
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if (complete) {
