@@ -55,18 +55,19 @@ function syncUser() {
 	localStorage.setItem("woordfuunUser", JSON.stringify(currentUser));
 }
 
-function validateWord(word) {
-	if (!fullWordList.includes(word) && !wordList.includes(word)) {
-		return 0;
-	}
-
-	for (var a = 0; a < currentUser.answers.length; a++) {
-		if (currentUser.answers[a].answer == word) {
-			return 2;
-		}
-	}
-
-	return 1;
+function main() {
+  fetch("wordlists/comanche.json")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error("HTTP error, status = " + response.status);
+      }
+      return response.json();
+    })
+    .then(function(json) {
+      wordList = json.words;
+      fullWordList = json.words; // use same list for now
+      startup();
+    });
 }
 
 function markAnswerFound(word) {
